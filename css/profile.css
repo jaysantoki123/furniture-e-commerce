@@ -1,0 +1,425 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Profile Sidebar */
+.profile-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+.profile-photo-wrapper {
+    width: 150px;
+    height: 150px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.photo-upload-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #0d6efd;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid white;
+}
+
+.photo-upload-btn:hover {
+    background: #0b5ed7;
+    transform: scale(1.1);
+}
+
+/* Profile Menu */
+.profile-menu {
+    overflow: hidden;
+}
+
+.menu-item {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+    border-left-color: #0d6efd;
+}
+
+.menu-item.active {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+    border-left-color: #0d6efd;
+    font-weight: 600;
+}
+
+/* Profile Details */
+.detail-item {
+    margin-bottom: 20px;
+}
+
+.detail-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.detail-value {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+}
+
+/* Statistics Cards */
+.stat-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.stat-card h3 {
+    font-weight: 700;
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    height: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.password-strength.weak {
+    background: linear-gradient(to right, #dc3545 0%, #dc3545 33%, #e9ecef 33%, #e9ecef 100%);
+}
+
+.password-strength.medium {
+    background: linear-gradient(to right, #ffc107 0%, #ffc107 66%, #e9ecef 66%, #e9ecef 100%);
+}
+
+.password-strength.strong {
+    background: #28a745;
+}
+
+/* Orders */
+.order-item {
+    transition: all 0.3s ease;
+}
+
+.order-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.order-item img {
+    max-height: 100px;
+    object-fit: cover;
+}
+
+/* Address Cards */
+.address-card {
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.address-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+/* Wishlist */
+.wishlist-card {
+    background: #fff;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.wishlist-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+
+.wishlist-card img {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.wishlist-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Card Headers */
+.card-header {
+    border-bottom: 2px solid #e9ecef;
+}
+
+.card-header h4 {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .profile-sidebar {
+        position: relative;
+        top: 0;
+    }
+
+    .stat-card {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-photo-wrapper,
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .order-item .row > div {
+        margin-bottom: 15px;
+    }
+
+    .order-item .col-md-3 {
+        text-align: left !important;
+    }
+
+    .address-card,
+    .wishlist-card {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 575px) {
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons button {
+        width: 100%;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 12px;
+    font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Error Messages */
+.error-message {
+    display: block;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.form-control.error {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='<http://www.w3.org/2000/svg>' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.success {
+    border-color: #28a745;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='<http://www.w3.org/2000/svg>' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Password Requirements */
+.password-requirements {
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 3px solid #6c757d;
+}
+
+.requirement-item {
+    display: block;
+    color: #6c757d;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.requirement-item i {
+    font-size: 0.5rem;
+    margin-right: 8px;
+}
+
+.requirement-item.met {
+    color: #28a745;
+}
+
+.requirement-item.met i {
+    color: #28a745;
+}
+
+.requirement-item.not-met {
+    color: #dc3545;
+}
+
+.requirement-item.not-met i {
+    color: #dc3545;
+}
+
+/* Password Strength Bar */
+.password-strength {
+    height: 8px;
+    border-radius: 4px;
+    background: #e9ecef;
+    overflow: hidden;
+    position: relative;
+}
+
+.password-strength::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.password-strength.weak::before {
+    width: 33.33%;
+    background: linear-gradient(to right, #dc3545, #e35d6a);
+}
+
+.password-strength.medium::before {
+    width: 66.66%;
+    background: linear-gradient(to right, #ffc107, #ffca2c);
+}
+
+.password-strength.strong::before {
+    width: 100%;
+    background: linear-gradient(to right, #28a745, #48c774);
+}
+
+/* Security Activity Icons */
+.activity-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* Loading State for Submit Button */
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+    position: relative;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+
+

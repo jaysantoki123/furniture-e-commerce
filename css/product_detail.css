@@ -1,0 +1,233 @@
+/* Product Images */
+.product-images .main-image {
+    position: relative;
+    overflow: hidden;
+ 
+    border-radius: 8px;
+}
+
+.product-images .main-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-images .main-image:hover img {
+    transform: scale(1.05);
+}
+
+.thumbnail-images {
+    overflow-x: auto;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    border-color: #0d6efd;
+    transform: scale(1.05);
+}
+
+/* Product Info */
+.product-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.rating a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.rating a:hover {
+    text-decoration: underline;
+}
+
+.price .current-price {
+    font-weight: 700;
+}
+
+.price .original-price {
+    font-size: 1.2rem;
+}
+
+/* Product Options */
+.color-options .btn {
+    min-width: 80px;
+}
+
+.quantity-selector input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.quantity-selector input[type="number"]::-webkit-outer-spin-button,
+.quantity-selector input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Action Buttons */
+.action-buttons button {
+    transition: all 0.3s ease;
+}
+
+.action-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Tabs */
+.nav-tabs .nav-link {
+    color: #666;
+    font-weight: 500;
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+    border-bottom-color: #dee2e6;
+}
+
+.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    border-color: transparent transparent #0d6efd;
+    background: transparent;
+}
+
+/* Reviews */
+.overall-rating {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.rating-breakdown .progress {
+    height: 8px;
+}
+
+.review-item h6 {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Star Rating Form */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ddd;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .product-title {
+        font-size: 1.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+
+    .price .current-price {
+        font-size: 1.5rem;
+    }
+
+    .overall-rating .row {
+        text-align: center;
+    }
+
+    .rating-breakdown {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .product-title {
+        font-size: 1.25rem;
+    }
+
+    .color-options {
+        flex-wrap: wrap;
+    }
+
+    .thumbnail-images {
+        justify-content: center;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-info,
+.product-images {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Toast Notification Styles */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
