@@ -9,7 +9,7 @@ include 'header.php';
     <div class="row justify-content-between">
       <div class="col-lg-5">
         <div class="intro-excerpt">
-          <h1>Login</h1>
+          <h1>Forgot Password</h1>
           <p class="mb-4">Welcome back! Please login to your account.</p>
         </div>
       </div>
@@ -41,17 +41,8 @@ include 'header.php';
               <span id="email_error"></span>
             </div>
 
-            <div class="form-group mb-5">
-              <label class="text-black" for="password">Password</label>
-              <input type="password" class="form-control" id="password" data-validation="required strongPassword" name="password">
-              <span id="password_error"></span>
-              <a href="forgot_password.php" class="h6 ">forgot password</a>
-            </div>
-
-            <button type="submit" class="btn btn-primary-hover-outline">Login</button>
-            <div class="mt-3">
-              <p>Don't have an account? <a href="register.php">Register here</a></p>
-            </div>
+            <button type="submit" class="btn btn-primary-hover-outline mt-3">Send Link</button>
+          
           </form>
 
         </div>

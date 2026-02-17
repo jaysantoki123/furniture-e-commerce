@@ -1,4 +1,6 @@
 <?php include 'header.php'; ?>
+
+</style>
 <style>
     .error-message {
         display: block;
@@ -9,7 +11,7 @@
         font-family: 'Fira Sans', sans-serif;
     }
 </style>
-
+<script src="/js/validation.js"></script>
 <div class="container-fluid p-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="h3 mb-0 text-gray-800">Add New User</h2>
@@ -25,60 +27,81 @@
 
                     <form id="addUserForm" action="#" method="POST" enctype="multipart/form-data">
 
+                        <!-- First & Last Name -->
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-6 position-relative">
                                 <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" name="first_name"
-                                    placeholder="Enter first name">
+                                <input type="text" class="form-control" name="firstName" placeholder="Enter first name"
+                                    data-validation="required min max alphabetic" data-min="2" data-max="30">
+                                <div id="firstName_error"></div>
                             </div>
-                            <div class="col-md-6">
+
+                            <div class="col-md-6 position-relative">
                                 <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" name="last_name" placeholder="Enter last name">
+                                <input type="text" class="form-control" name="lastName" placeholder="Enter last name"
+                                    data-validation="required min max alphabetic" data-min="2" data-max="30">
+                                <div id="lastName_error"></div>
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <!-- Email -->
+                        <div class="mb-3 position-relative">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" name="email" placeholder="Enter email address">
+                            <input type="email" class="form-control" name="email" placeholder="Enter email address"
+                                data-validation="required email">
+                            <div id="email_error"></div>
                         </div>
 
-                        <div class="mb-3">
+                        <!-- Password -->
+                        <div class="mb-3 position-relative">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Enter password">
+                            <input type="password" class="form-control" name="password" placeholder="Enter password"
+                                data-validation="required strongPassword">
+                            <div id="password_error"></div>
                         </div>
 
+                        <!-- Role & Phone -->
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-6 position-relative">
                                 <label class="form-label">Role</label>
-                                <select class="form-select" name="role">
+                                <select class="form-select" name="role" data-validation="required select">
                                     <option value="">Choose role...</option>
                                     <option value="customer">Customer</option>
                                     <option value="admin">Admin</option>
                                     <option value="editor">Editor</option>
                                 </select>
+                                <div id="role_error"></div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 position-relative">
                                 <label class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" name="phone" placeholder="Enter phone number">
+                                <input type="tel" class="form-control" name="phone" placeholder="Enter phone number"
+                                    data-validation="required number min max" data-min="10" data-max="10">
+                                <div id="phone_error"></div>
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <!-- Profile Image -->
+                        <div class="mb-3 position-relative">
                             <label class="form-label">Profile Image</label>
-                            <input class="form-control" type="file" name="avatar">
+                            <input class="form-control" type="file" name="avatar" data-validation="required fileSize fileType"
+                                data-filesize="2048" data-filetype="jpg,jpeg,png">
+                            <div id="avatar_error"></div>
                         </div>
 
+                        <!-- Status -->
                         <div class="mb-3">
                             <label class="form-label d-block">Status</label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" value="active" checked>
+                                <input class="form-check-input" type="radio" name="status" value="active" checked
+                                    data-validation="required">
                                 <label class="form-check-label">Active</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="status" value="inactive">
                                 <label class="form-check-label">Inactive</label>
                             </div>
+                            <div id="status_error"></div>
                         </div>
 
                         <div class="d-grid">
@@ -101,105 +124,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
 
 
-<script>
-    $(document).ready(function () {
-
-        $("#addUserForm").validate({
-
-            rules: {
-                first_name: {
-                    required: true,
-                    minlength: 2
-                },
-                last_name: {
-                    required: true,
-                    minlength: 2
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: {
-                    required: true,
-                    minlength: 6
-                },
-                role: {
-                    required: true
-                },
-                phone: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-                avatar: {
-                    required: true,
-                    extension: "jpg|jpeg|png"
-                }
-            },
-
-            messages: {
-                first_name: {
-                    required: "First name is required",
-                    minlength: "Minimum 2 characters required"
-                },
-                last_name: {
-                    required: "Last name is required",
-                    minlength: "Minimum 2 characters required"
-                },
-                email: {
-                    required: "Email address is required",
-                    email: "Please enter a valid email address"
-                },
-                password: {
-                    required: "Password is required",
-                    minlength: "Password must be at least 6 characters"
-                },
-                role: {
-                    required: "Please select a role"
-                },
-                phone: {
-                    required: "Phone number is required",
-                    digits: "Only numbers are allowed",
-                    minlength: "Phone number must be 10 digits",
-                    maxlength: "Phone number must be 10 digits"
-                },
-                avatar: {
-                    required: "Profile image is required",
-                    extension: "Only JPG, JPEG, PNG files are allowed"
-                }
-            },
-
-            errorElement: "div",
-            errorClass: "error-message",
-
-            highlight: function (element) {
-                $(element)
-                    .removeClass("is-valid")
-                    .addClass("is-invalid")
-                    .next(".valid-feedback-icon").remove();
-            },
-
-            unhighlight: function (element) {
-                $(element)
-                    .removeClass("is-invalid")
-                    .addClass("is-valid");
-
-
-            },
-
-            errorPlacement: function (error, element) {
-                error.insertAfter(element);
-            },
-
-            submitHandler: function (form) {
-                alert("All required fields are valid ✔");
-                // form.submit(); // enable when backend is ready
-            }
-        });
-
-    });
-</script>
 
 
 

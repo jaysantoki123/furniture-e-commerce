@@ -4,6 +4,7 @@ include 'header.php';
 ?>
 
 <link rel="stylesheet" href="css/profile.css">
+<script src="js/validation.js"></script>
 <div class="container my-5">
     <div class="row">
         <!-- Sidebar -->
@@ -80,13 +81,13 @@ include 'header.php';
                             <div class="col-md-6">
                                 <div class="detail-item">
                                     <label class="detail-label">Full Name</label>
-                                    <p class="detail-value">Jay Santoki</p>
+                                    <p class="detail-value">Shyam Fichadiya</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="detail-item">
                                     <label class="detail-label">Email Address</label>
-                                    <p class="detail-value">jay.santoki@example.com</p>
+                                    <p class="detail-value">Shyam.Fichadiya@example.com</p>
                                 </div>
                             </div>
                         </div>
@@ -187,13 +188,17 @@ include 'header.php';
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="firstName" class="form-label">First Name *</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" value="Jay"
-                                        required>
+                                    <input type="text" class="form-control" id="firstName" name="firstName"
+                                        value="Shyam" data-validation="required min max alphabetic" data-min="2"
+                                        data-max="100">
+                                    <span id="firstName_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="lastName" class="form-label">Last Name *</label>
                                     <input type="text" class="form-control" id="lastName" name="lastName"
-                                        value="Santoki" required>
+                                        value="Fichadiya" data-validation="required min max alphabetic" data-min="2"
+                                        data-max="100">
+                                    <span id="lastName_error"></span>
                                 </div>
                             </div>
 
@@ -201,56 +206,62 @@ include 'header.php';
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email Address *</label>
                                     <input type="email" class="form-control" id="email" name="email"
-                                        value="jay.santoki@example.com" required>
+                                        value="jay.santoki@example.com" data-validation="required email">
+                                    <span id="email_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">Phone Number *</label>
                                     <input type="tel" class="form-control" id="phone" name="phone"
-                                        value="+91 98765 43210" required>
+                                        value="+91 98765 43210" data-validation="required number min max" data-min="10"
+                                        data-max="10">
+                                        <span id="phone_error"></span>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="dob" class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob" name="dob" value="1995-01-15">
-                                </div>
-                                <div class="col-md-6">
+                                
+                                <div class="col-md-12">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select class="form-select" id="gender" name="gender">
+                                    <select class="form-select" id="gender" name="gender" data-validation="required select">
                                         <option value="">Select Gender</option>
                                         <option value="male" selected>Male</option>
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
                                     </select>
+                                    <span id="gender_error"></span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" class="form-control" id="address" name="address" value="123, MG Road"
-                                    placeholder="Street Address">
+                                    placeholder="Street Address" data-validation="required min" data-min="2">
+                                <span id="address_error"></span>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="city" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="city" name="city" value="Ahmedabad">
+                                    <input type="text" class="form-control" id="city" name="city" value="Ahmedabad" data-validation="required min" data-min="2">
+                                    <span id="city_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="state" class="form-label">State</label>
-                                    <input type="text" class="form-control" id="state" name="state" value="Gujarat">
+                                    <input type="text" class="form-control" id="state" name="state" value="Gujarat" data-validation="required min" data-min="2">
+                                    <span id="state_error"></span>
                                 </div>
                             </div>
 
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     <label for="pincode" class="form-label">Pin Code</label>
-                                    <input type="text" class="form-control" id="pincode" name="pincode" value="380001">
+                                    <input type="text" class="form-control" id="pincode" name="pincode" value="380001" data-validation="required number min max" data-max="6" data-min="6">
+                                    <span id="pincode_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="country" class="form-label">Country</label>
-                                    <input type="text" class="form-control" id="country" name="country" value="India">
+                                    <input type="text" class="form-control" id="country" name="country" value="India" data-validation="required max min alphabetic" data-min="2" data-max="10">
+                                    <sapn id="country_error"></sapn>
                                 </div>
                             </div>
 
@@ -281,65 +292,48 @@ include 'header.php';
                             special character.
                         </div>
 
-                        <form id="changePasswordForm" action="/change-password" method="POST" novalidate>
+                        <form>
                             <div class="mb-3">
                                 <label for="currentPassword" class="form-label">Current Password *</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="currentPassword"
-                                        name="currentPassword">
+                                    <input type="password" class="form-control" id="currentPassword" name="oldPasssword"
+                                        data-validation="required strongPassword">
                                     <button class="btn btn-outline-secondary" type="button"
                                         onclick="togglePassword('currentPassword')">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
-                                <span class="error-message" id="currentPassword-error"></span>
+                                <span id="oldPasssword_error"></span>
                             </div>
 
                             <div class="mb-3">
                                 <label for="newPassword" class="form-label">New Password *</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="newPassword" name="newPassword">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        data-validation="required strongPassword">
                                     <button class="btn btn-outline-secondary" type="button"
                                         onclick="togglePassword('newPassword')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                </div>
-                                <div class="password-strength mt-2" id="passwordStrength"></div>
-                                <span class="error-message" id="newPassword-error"></span>
 
-                                <!-- Password Requirements List -->
-                                <div class="password-requirements mt-2">
-                                    <small class="d-block text-muted mb-1">Password must contain:</small>
-                                    <small id="req-length" class="requirement-item">
-                                        <i class="fas fa-circle"></i> At least 8 characters
-                                    </small>
-                                    <small id="req-uppercase" class="requirement-item">
-                                        <i class="fas fa-circle"></i> One uppercase letter
-                                    </small>
-                                    <small id="req-lowercase" class="requirement-item">
-                                        <i class="fas fa-circle"></i> One lowercase letter
-                                    </small>
-                                    <small id="req-number" class="requirement-item">
-                                        <i class="fas fa-circle"></i> One number
-                                    </small>
-                                    <small id="req-special" class="requirement-item">
-                                        <i class="fas fa-circle"></i> One special character (@$!%*?&#)
-                                    </small>
                                 </div>
+
+                                <span id="password_error"></span>
+
                             </div>
 
                             <div class="mb-4">
                                 <label for="confirmPassword" class="form-label">Confirm New Password *</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="confirmPassword"
-                                        name="confirmPassword">
+                                        name="confirmPassword" data-validation="required confirmPassword">
                                     <button class="btn btn-outline-secondary" type="button"
                                         onclick="togglePassword('confirmPassword')">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
                                 <div id="passwordMatch" class="mt-2"></div>
-                                <span class="error-message" id="confirmPassword-error"></span>
+                                <span id="confirmPassword_error"></span>
                             </div>
 
                             <div class="d-flex gap-2">
@@ -354,32 +348,7 @@ include 'header.php';
                     </div>
                 </div>
 
-                <!-- Recent Password Changes -->
-                <div class="card shadow-sm mt-4">
-                    <div class="card-header bg-white">
-                        <h5 class="mb-0">Security Activity</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="activity-icon bg-success text-white rounded-circle me-3">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div>
-                                <p class="mb-0 fw-bold">Password Last Changed</p>
-                                <small class="text-muted">January 15, 2026 at 10:30 AM</small>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class="activity-icon bg-info text-white rounded-circle me-3">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <p class="mb-0 fw-bold">Last Login</p>
-                                <small class="text-muted">February 3, 2026 at 6:15 PM</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             
             </div>
 
 
@@ -758,208 +727,5 @@ include 'header.php';
 
 </script>
 
-<script>
-    // jQuery Validation for Change Password Form
-    $(document).ready(function () {
 
-        // Custom validation method for strong password
-        $.validator.addMethod("strongPassword", function (value, element) {
-            return this.optional(element) ||
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$/.test(value);
-        }, "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character");
-
-        // Initialize form validation
-        $("#changePasswordForm").validate({
-            rules: {
-                currentPassword: {
-                    required: true,
-                    minlength: 6
-                },
-                newPassword: {
-                    required: true,
-                    minlength: 8,
-                    strongPassword: true,
-                    notEqualTo: "#currentPassword"
-                },
-                confirmPassword: {
-                    required: true,
-                    equalTo: "#newPassword"
-                }
-            },
-            messages: {
-                currentPassword: {
-                    required: "Please enter your current password",
-                    minlength: "Password must be at least 6 characters long"
-                },
-                newPassword: {
-                    required: "Please enter a new password",
-                    minlength: "Password must be at least 8 characters long",
-                    notEqualTo: "New password must be different from current password"
-                },
-                confirmPassword: {
-                    required: "Please confirm your new password",
-                    equalTo: "Passwords do not match"
-                }
-            },
-            errorElement: 'span',
-            errorClass: 'error-message',
-            highlight: function (element, errorClass, validClass) {
-                $(element).addClass('error').removeClass('success');
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).removeClass('error').addClass('success');
-            },
-            errorPlacement: function (error, element) {
-                error.insertAfter(element.closest('.input-group').length ? element.closest('.input-group') : element);
-
-                // Insert after password match div if it exists
-                if (element.attr('id') === 'confirmPassword') {
-                    error.insertAfter('#passwordMatch');
-                }
-            },
-            submitHandler: function (form) {
-                // Show loading state
-                const submitBtn = $(form).find('button[type="submit"]');
-                submitBtn.addClass('loading').prop('disabled', true);
-                submitBtn.html('<span class="spinner-border spinner-border-sm me-2"></span>Updating...');
-
-                // Simulate form submission (replace with actual AJAX call)
-                setTimeout(function () {
-                    // Success
-                    showNotification('Password changed successfully!', 'success');
-
-                    // Reset form
-                    form.reset();
-                    $('#changePasswordForm').validate().resetForm();
-                    $('.form-control').removeClass('error success');
-
-                    // Reset button
-                    submitBtn.removeClass('loading').prop('disabled', false);
-                    submitBtn.html('<i class="fas fa-lock me-2"></i>Update Password');
-
-                    // Clear password requirements
-                    $('.requirement-item').removeClass('met not-met');
-                    $('#passwordStrength').removeClass('weak medium strong');
-                    $('#passwordMatch').html('');
-
-                    // Switch to profile view
-                    setTimeout(function () {
-                        showSection('profile');
-                    }, 1500);
-
-                }, 2000);
-
-                return false; // Prevent default form submission
-            }
-        });
-
-        // Custom method to check if new password is different from current
-        $.validator.addMethod("notEqualTo", function (value, element, param) {
-            return this.optional(element) || value !== $(param).val();
-        }, "New password must be different from current password");
-
-        // Real-time password strength checker
-        $('#newPassword').on('input', function () {
-            const password = $(this).val();
-            const strengthBar = $('#passwordStrength');
-
-            // Check requirements
-            const requirements = {
-                length: password.length >= 8,
-                uppercase: /[A-Z]/.test(password),
-                lowercase: /[a-z]/.test(password),
-                number: /\\d/.test(password),
-                special: /[@$!%*?&#]/.test(password)
-            };
-
-            // Update requirement items
-            $('#req-length').toggleClass('met', requirements.length).toggleClass('not-met', !requirements.length);
-            $('#req-uppercase').toggleClass('met', requirements.uppercase).toggleClass('not-met', !requirements.uppercase);
-            $('#req-lowercase').toggleClass('met', requirements.lowercase).toggleClass('not-met', !requirements.lowercase);
-            $('#req-number').toggleClass('met', requirements.number).toggleClass('not-met', !requirements.number);
-            $('#req-special').toggleClass('met', requirements.special).toggleClass('not-met', !requirements.special);
-
-            // Calculate strength
-            const metRequirements = Object.values(requirements).filter(Boolean).length;
-
-            strengthBar.removeClass('weak medium strong');
-
-            if (password.length === 0) {
-                strengthBar.removeClass('weak medium strong');
-            } else if (metRequirements <= 2) {
-                strengthBar.addClass('weak');
-            } else if (metRequirements <= 4) {
-                strengthBar.addClass('medium');
-            } else {
-                strengthBar.addClass('strong');
-            }
-        });
-
-        // Real-time password match checker
-        $('#confirmPassword').on('input', function () {
-            const newPassword = $('#newPassword').val();
-            const confirmPassword = $(this).val();
-            const matchDiv = $('#passwordMatch');
-
-            if (confirmPassword.length > 0) {
-                if (newPassword === confirmPassword) {
-                    matchDiv.html('<small class="text-success"><i class="fas fa-check-circle me-1"></i>Passwords match</small>');
-                    $(this).addClass('success').removeClass('error');
-                } else {
-                    matchDiv.html('<small class="text-danger"><i class="fas fa-times-circle me-1"></i>Passwords do not match</small>');
-                    $(this).addClass('error').removeClass('success');
-                }
-            } else {
-                matchDiv.html('');
-                $(this).removeClass('success error');
-            }
-        });
-
-        // Clear validation on reset
-        $('#changePasswordForm').on('reset', function () {
-            setTimeout(function () {
-                $('#changePasswordForm').validate().resetForm();
-                $('.form-control').removeClass('error success');
-                $('.requirement-item').removeClass('met not-met');
-                $('#passwordStrength').removeClass('weak medium strong');
-                $('#passwordMatch').html('');
-            }, 0);
-        });
-    });
-
-    // Toggle Password Visibility (keep existing function)
-    function togglePassword(inputId) {
-        const input = document.getElementById(inputId);
-        const icon = event.currentTarget.querySelector('i');
-
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            input.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    }
-
-    // Show Notification (keep existing function)
-    function showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
-        notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
-        notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check' : 'exclamation'}-circle me-2"></i>
-        ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    `;
-
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
-    }
-
-</script>
 <?php include 'footer.php'; ?>

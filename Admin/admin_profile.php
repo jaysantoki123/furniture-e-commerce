@@ -2,8 +2,8 @@
 $page = 'product_detail';
 include 'header.php';
 ?>
-
 <link rel="stylesheet" href="admin_profile.css">
+<script src="/js/validation.js"></script>
 <div class="container my-5">
     <div class="row">
         <!-- Sidebar -->
@@ -42,13 +42,13 @@ include 'header.php';
                                 <i class="fas fa-lock me-2"></i> Change Password
                             </a>
                         </li>
-                        
+
                         <li>
                             <a href="#addresses" class="menu-item" onclick="showSection('addresses')">
                                 <i class="fas fa-map-marker-alt me-2"></i> Addresses
                             </a>
                         </li>
-                       
+
                         <li>
                             <a href="#" class="menu-item text-danger">
                                 <i class="fas fa-sign-out-alt me-2"></i> Logout
@@ -130,8 +130,8 @@ include 'header.php';
                     </div>
                 </div>
 
-               
-         
+
+
             </div>
 
             <!-- Edit Profile Section -->
@@ -141,74 +141,91 @@ include 'header.php';
                         <h4 class="mb-0">Edit Profile</h4>
                     </div>
                     <div class="card-body">
-                        <form action="/update-profile" method="POST">
+                        <form>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="firstName" class="form-label">First Name *</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" value="Jay"
-                                        required>
+                                    <input type="text" class="form-control" id="firstName" name="firstName"
+                                        placeholder="Shyam" data-validation="required min max alphabetic" data-min="2"
+                                        data-max="100">
+                                    <span id="firstName_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="lastName" class="form-label">Last Name *</label>
                                     <input type="text" class="form-control" id="lastName" name="lastName"
-                                        value="Santoki" required>
+                                        placeholder="Fichadiya" data-validation="required min max alphabetic"
+                                        data-min="2" data-max="100">
+                                    <span id="lastName_error"></span>
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email Address *</label>
                                     <input type="email" class="form-control" id="email" name="email"
-                                        value="jay.santoki@example.com" required>
+                                        value="shyam.fichadiya@example.com" data-validation="required email">
+                                    <span id="email_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">Phone Number *</label>
                                     <input type="tel" class="form-control" id="phone" name="phone"
-                                        value="+91 98765 43210" required>
+                                        placeholder="+91 98765 43210" data-validation="required number min max"
+                                        data-min="10" data-max="10">
+                                    <span id="phone_error"></span>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="dob" class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob" name="dob" value="1995-01-15">
-                                </div>
-                                <div class="col-md-6">
+
+                                <div class="col-md-12">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select class="form-select" id="gender" name="gender">
-                                        <option value="">Select Gender</option>
+                                    <select class="form-select" id="gender" name="gender"
+                                        data-validation="required select">
+                                        <option placeholder="">Select Gender</option>
                                         <option value="male" selected>Male</option>
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
                                     </select>
+                                    <span id="gender_error"></span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" value="123, MG Road"
-                                    placeholder="Street Address">
+                                <input type="text" class="form-control" id="address" name="address"
+                                    placeholder="123, MG Road" placeholder="Street Address"
+                                    data-validation="required min" data-min="2">
+                                <span id="address_error"></span>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="city" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="city" name="city" value="Ahmedabad">
+                                    <input type="text" class="form-control" id="city" name="city"
+                                        placeholder="Ahmedabad" data-validation="required min" data-min="2">
+                                    <span id="city_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="state" class="form-label">State</label>
-                                    <input type="text" class="form-control" id="state" name="state" value="Gujarat">
+                                    <input type="text" class="form-control" id="state" name="state"
+                                        placeholder="Gujarat" data-validation="required min" data-min="2">
+                                    <span id="state_error"></span>
                                 </div>
                             </div>
 
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     <label for="pincode" class="form-label">Pin Code</label>
-                                    <input type="text" class="form-control" id="pincode" name="pincode" value="380001">
+                                    <input type="text" class="form-control" id="pincode" name="pincode"
+                                        placeholder="380001" data-validation="required number min max" data-max="6"
+                                        data-min="6">
+                                    <span id="pincode_error"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="country" class="form-label">Country</label>
-                                    <input type="text" class="form-control" id="country" name="country" value="India">
+                                    <input type="text" class="form-control" id="country" name="country"
+                                        placeholder="India" data-validation="required max min alphabetic" data-min="2"
+                                        data-max="10">
+                                    <sapn id="country_error"></sapn>
                                 </div>
                             </div>
 
@@ -239,48 +256,48 @@ include 'header.php';
                             special character.
                         </div>
 
-                        <form id="changePasswordForm" action="/change-password" method="POST" novalidate>
+                        <form>
                             <div class="mb-3">
                                 <label for="currentPassword" class="form-label">Current Password *</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="currentPassword"
-                                        name="currentPassword">
+                                    <input type="password" class="form-control" id="currentPassword" name="oldPasssword"
+                                        data-validation="required strongPassword">
                                     <button class="btn btn-outline-secondary" type="button"
                                         onclick="togglePassword('currentPassword')">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
-                                <span class="error-message" id="currentPassword-error"></span>
+                                <span id="oldPasssword_error"></span>
                             </div>
 
                             <div class="mb-3">
                                 <label for="newPassword" class="form-label">New Password *</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="newPassword" name="newPassword">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        data-validation="required strongPassword">
                                     <button class="btn btn-outline-secondary" type="button"
                                         onclick="togglePassword('newPassword')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                </div>
-                                
-                                <span class="error-message" id="newPassword-error"></span>
 
-                                <!-- Password Requirements List -->
-                              
+                                </div>
+
+                                <span id="password_error"></span>
+
                             </div>
 
                             <div class="mb-4">
                                 <label for="confirmPassword" class="form-label">Confirm New Password *</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="confirmPassword"
-                                        name="confirmPassword">
+                                        name="confirmPassword" data-validation="required confirmPassword">
                                     <button class="btn btn-outline-secondary" type="button"
                                         onclick="togglePassword('confirmPassword')">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
                                 <div id="passwordMatch" class="mt-2"></div>
-                                <span class="error-message" id="confirmPassword-error"></span>
+                                <span id="confirmPassword_error"></span>
                             </div>
 
                             <div class="d-flex gap-2">
@@ -295,12 +312,11 @@ include 'header.php';
                     </div>
                 </div>
 
-           
             </div>
 
 
             <!-- Orders Section -->
-          
+
 
             <!-- Addresses Section -->
             <div id="addresses" class="content-section" style="display: none;">
@@ -353,7 +369,7 @@ include 'header.php';
                 </div>
             </div>
 
-          
+
         </div>
     </div>
 </div>
